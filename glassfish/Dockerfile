@@ -7,6 +7,7 @@ ENV PATH="${PATH}:/opt/glassfish7/bin"
 
 ADD oldpwd /tmp/oldpwd
 ADD newpwd /tmp/newpwd
+ADD --chmod=0755 start.sh /usr/local/bin
 
 RUN \
  asadmin start-domain && \
@@ -21,5 +22,4 @@ EXPOSE 8080/tcp
 EXPOSE 8181/tcp
 EXPOSE 4848/tcp
 
-CMD [ "asadmin", "start-domain", "--verbose", "domain1" ]
-
+ENTRYPOINT /usr/local/bin/start.sh
